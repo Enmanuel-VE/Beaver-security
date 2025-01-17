@@ -1,15 +1,17 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import A from "./pages/a";
-import B from "./pages/b";
-import C from "./pages/c";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import Register from "./pages/Register";
+import GeneratorPasswords from "./pages/GeneratorPasswords";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes path="/" element={<div>hello wordl</div>}>
-        <Route path="/a" element={<A />} />
-        <Route path="/b" element={<B />} />
-        <Route path="/c" element={<C />} />
+        <Route path="/home" element={<Login />} />
+        <Route path="/login" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/generatorPasswords" element={<GeneratorPasswords />} />
       </Routes>
     </BrowserRouter>
   );
