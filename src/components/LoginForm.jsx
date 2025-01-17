@@ -1,3 +1,4 @@
+import { NavLink } from "react-router";
 import { MdEmail } from "react-icons/md";
 import { IoKeySharp } from "react-icons/io5";
 
@@ -36,9 +37,9 @@ export default function LoginForm() {
           <p>
             ¿Nuevo por aquí?{" "}
             <span>
-              <a href="#" className="link link-primary">
+              <NavLink className="link link-primary" to="/register" end>
                 Crea una cuenta
-              </a>
+              </NavLink>
             </span>
             .
           </p>
