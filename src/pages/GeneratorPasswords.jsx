@@ -1,9 +1,11 @@
-import { FaHouseUser } from "react-icons/fa";
+import GPasswordsForm from "../components/GPasswordsForm";
 
-export default function Login() {
+export default function GeneratorPasswords() {
   return (
-    <div className="h-16 w-24 bg-orange-500 rounded-lg text-white">
-      A <FaHouseUser size={20} color="red" />
-    </div>
+    <>
+      <div className=" bg-[#f1f1f1f1] w-full h-screen" data-theme="light">
+        <GPasswordsForm />
+      </div>
+    </>
   );
 }

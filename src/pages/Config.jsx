@@ -1,6 +1,6 @@
 import WorkingProgress from "../components/WorkingProgress";
 
-export default function Safe() {
+export default function Config() {
   return (
     <>
       <WorkingProgress />
