@@ -1,7 +1,7 @@
 import { ImSpinner11 } from "react-icons/im";
 import { FaCopy } from "react-icons/fa";
 
-export default function GPasswordsForm() {
+const GPasswordsForm = () => {
   return (
     <>
       <div className="">
@@ -50,4 +50,6 @@ export default function GPasswordsForm() {
       </div>
     </>
   );
-}
+};
+
+export default GPasswordsForm;

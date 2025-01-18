@@ -1,6 +1,6 @@
 import RegisterForm from "../components/RegisterForm";
 
-export default function Login() {
+const Login = () => {
   return (
     <div data-theme="light">
       <div className="flex w-full h-screen">
@@ -14,4 +14,6 @@ export default function Login() {
       </div>
     </div>
   );
-}
+};
+
+export default Login;

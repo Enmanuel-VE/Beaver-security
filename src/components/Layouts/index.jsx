@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import BottomNavigationBar from "../BottomNavigationBar";
 
-export default function Layout() {
+const Layout = () => {
   return (
     <div data-theme="light">
       <main>
@@ -10,4 +10,5 @@ export default function Layout() {
       </main>
     </div>
   );
-}
+};
+export default Layout;

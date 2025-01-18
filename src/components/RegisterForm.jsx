@@ -4,7 +4,7 @@ import { MdEmail } from "react-icons/md";
 import { IoKeySharp } from "react-icons/io5";
 import { NavLink } from "react-router";
 
-export default function RegisterForm() {
+const RegisterForm = () => {
   return (
     <>
       <div className="flex flex-col gap-4 p-4 max-w-md mx-auto">
@@ -62,4 +62,5 @@ export default function RegisterForm() {
       </div>
     </>
   );
-}
+};
+export default RegisterForm;

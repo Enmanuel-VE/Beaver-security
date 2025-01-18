@@ -1,6 +1,6 @@
 import GPasswordsForm from "../components/GPasswordsForm";
 
-export default function GeneratorPasswords() {
+const GeneratorPasswords = () => {
   return (
     <>
       <div className=" bg-[#f1f1f1f1] w-full h-screen" data-theme="light">
@@ -8,4 +8,6 @@ export default function GeneratorPasswords() {
       </div>
     </>
   );
-}
+};
+
+export default GeneratorPasswords;

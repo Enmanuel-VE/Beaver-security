@@ -10,7 +10,7 @@ const NAVIGATION = {
   GENERATOR_PASSWORDS: "/generator-passwords",
 };
 
-export default function BottomNavigationBar() {
+const BottomNavigationBar = () => {
   const router = useLocation();
   const path = router.pathname;
 
@@ -49,4 +49,6 @@ export default function BottomNavigationBar() {
       </NavLink>
     </div>
   );
-}
+};
+
+export default BottomNavigationBar;

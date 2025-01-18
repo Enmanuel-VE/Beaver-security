@@ -2,7 +2,7 @@ import { NavLink } from "react-router";
 import { MdEmail } from "react-icons/md";
 import { IoKeySharp } from "react-icons/io5";
 
-export default function LoginForm() {
+const LoginForm = () => {
   return (
     <>
       <div className="flex flex-col gap-4 p-4 max-w-md mx-auto">
@@ -47,4 +47,6 @@ export default function LoginForm() {
       </div>
     </>
   );
-}
+};
+
+export default LoginForm;
