@@ -2,12 +2,12 @@ import { IoIosArrowForward } from "react-icons/io";
 import { TbWorld } from "react-icons/tb";
 import PropTypes from "prop-types";
 
-export default function SafeItem({ siteName, url }) {
+const SafeItem = ({ siteName, url }) => {
   return (
     <div className="rounded-md bg-base-100 w-full h-20 shadow-xl py-2 px-3 flex justify-between">
       <div className="flex gap-4 items-center">
         <div>
-          <TbWorld />
+          <TbWorld className="w-6 h-6" />
         </div>
         <div className="text-xs ">
           <p className="font-semibold text-ellipsis">{siteName}</p>
@@ -15,13 +15,15 @@ export default function SafeItem({ siteName, url }) {
         </div>
       </div>
       <div className="w-6 flex items-center">
-        <IoIosArrowForward />
+        <IoIosArrowForward className="w-6 h-6" />
       </div>
     </div>
   );
-}
+};
 
 SafeItem.propTypes = {
   siteName: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 };
+
+export default SafeItem;

@@ -6,6 +6,7 @@ import PasswordsGenerator from "./pages/PasswordsGenerator";
 import Config from "./pages/Config";
 import Layout from "./components/Layouts";
 import CreateItem from "./pages/CreateItem";
+import ShowItem from "./pages/ShowItem";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/config" element={<Config />} />
           <Route path="/createitem" element={<CreateItem />} />
           <Route path="/passwords-generator" element={<PasswordsGenerator />} />
+          <Route path="/show-item" element={<ShowItem />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
