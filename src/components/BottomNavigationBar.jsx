@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 const NAVIGATION = {
   SAFE: "/safe",
   CONFIG: "/config",
-  GENERATOR_PASSWORDS: "/generator-passwords",
+  GENERATOR_PASSWORDS: "/passwords-generator",
 };
 
 const BottomNavigationBar = () => {
@@ -17,7 +17,7 @@ const BottomNavigationBar = () => {
   const isActive = (pathName) => path === pathName;
 
   return (
-    <div className="btm-nav">
+    <div className="btm-nav fixed bottom-0">
       <NavLink className="link link-primary" to={NAVIGATION.SAFE} end>
         <button
           data-isActive={isActive(NAVIGATION.SAFE)}

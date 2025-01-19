@@ -18,17 +18,17 @@ const RegisterForm = () => {
           </p>
           <label className="input input-bordered flex items-center gap-2">
             <MdEmail className="bg-opacity-50" />
-            <input type="text" className="grow" placeholder="Email" />
+            <input type="text" className="grow" placeholder="Correo" />
           </label>
 
           <label className="input input-bordered flex items-center gap-2">
             <FaUserAlt />
-            <input type="text" className="grow" placeholder="Your name" />
+            <input type="text" className="grow" placeholder="Nombre" />
           </label>
 
           <label className="input input-bordered flex items-center gap-2">
             <IoKeySharp className="bg-opacity-50" />
-            <input type="password" className="grow" placeholder="Password" />
+            <input type="password" className="grow" placeholder="Contraseña" />
           </label>
 
           <label className="input input-bordered flex items-center gap-2">
@@ -36,17 +36,21 @@ const RegisterForm = () => {
             <input
               type="password"
               className="grow"
-              placeholder="Repeat password"
+              placeholder="Repetir contraseña"
             />
           </label>
 
           <label className="input input-bordered flex items-center gap-2">
             <FaBook />
-            <input type="text" className="grow" placeholder="Password hint" />
+            <input
+              type="text"
+              className="grow"
+              placeholder="Pista de contraseña"
+            />
           </label>
 
           <button className="btn btn-active text-center btn-primary">
-            Register
+            Registrarce
           </button>
 
           <p>

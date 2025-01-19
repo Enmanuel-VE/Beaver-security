@@ -1,7 +1,12 @@
+import CreateButtonItem from "../components/CreateButtonItem";
+
+import SafeItem from "../components/SafeItems";
+
 const Safe = () => {
   return (
-    <div data-theme="light">
-      <div className="flex w-full h-screen bg-[#f1f1f1f1]"></div>
+    <div className="my-5">
+      <SafeItem siteName="Nombre del sitio" url="url del sitio" />
+      <CreateButtonItem />
     </div>
   );
 };

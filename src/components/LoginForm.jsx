@@ -13,12 +13,12 @@ const LoginForm = () => {
           </p>
           <label className="input input-bordered flex items-center gap-2">
             <MdEmail className="bg-opacity-50" />
-            <input type="text" className="grow" placeholder="Email" />
+            <input type="text" className="grow" placeholder="Correo" />
           </label>
 
           <label className="input input-bordered flex items-center gap-2">
             <IoKeySharp className="bg-opacity-50" />
-            <input type="password" className="grow" placeholder="Password" />
+            <input type="password" className="grow" placeholder="Contraseña" />
           </label>
 
           <label className="label cursor-pointer">
@@ -31,7 +31,7 @@ const LoginForm = () => {
           </label>
 
           <button className="btn btn-active text-center btn-primary">
-            Login
+            Iniciar sesión
           </button>
 
           <p>
