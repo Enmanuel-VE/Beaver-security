@@ -8,10 +8,8 @@ const LoginForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm();
 
-  console.log(errors);
   const onSubmit = handleSubmit((data) => {
     console.log(data);
   });
