@@ -1,9 +1,14 @@
-import WorkingProgress from "../components/WorkingProgress";
+import CreateButtonItem from "../components/CreateButtonItem";
 
-export default function Safe() {
+import SafeItem from "../components/SafeItems";
+
+const Safe = () => {
   return (
-    <>
-      <WorkingProgress />
-    </>
+    <div className="my-5">
+      <SafeItem siteName="Nombre del sitio" url="url del sitio" />
+      <CreateButtonItem />
+    </div>
   );
-}
+};
+
+export default Safe;

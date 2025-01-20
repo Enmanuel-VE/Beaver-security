@@ -1,9 +1,7 @@
 import WorkingProgress from "../components/WorkingProgress";
 
-export default function Config() {
-  return (
-    <>
-      <WorkingProgress />
-    </>
-  );
-}
+const Config = () => {
+  return <WorkingProgress />;
+};
+
+export default Config;

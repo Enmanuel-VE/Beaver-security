@@ -7,17 +7,17 @@ import { useLocation } from "react-router-dom";
 const NAVIGATION = {
   SAFE: "/safe",
   CONFIG: "/config",
-  GENERATOR_PASSWORDS: "/generator-passwords",
+  GENERATOR_PASSWORDS: "/passwords-generator",
 };
 
-export default function BottomNavigationBar() {
+const BottomNavigationBar = () => {
   const router = useLocation();
   const path = router.pathname;
 
   const isActive = (pathName) => path === pathName;
 
   return (
-    <div className="btm-nav">
+    <div className="btm-nav fixed bottom-0">
       <NavLink className="link link-primary" to={NAVIGATION.SAFE} end>
         <button
           data-isActive={isActive(NAVIGATION.SAFE)}
@@ -49,4 +49,6 @@ export default function BottomNavigationBar() {
       </NavLink>
     </div>
   );
-}
+};
+
+export default BottomNavigationBar;
