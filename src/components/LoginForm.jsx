@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { NavLink } from "react-router";
 import { MdEmail } from "react-icons/md";
 import { IoKeySharp } from "react-icons/io5";
+import { useState } from "react";
 
 const LoginForm = () => {
   const {
@@ -10,9 +11,12 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
-  });
+  const [email, setEmail] = useState("");
+
+  const onSubmit = (data) => {
+    console.log(data.email);
+  };
+
   return (
     <>
       <div className="flex flex-col gap-4 p-4 max-w-md mx-auto">
@@ -22,7 +26,11 @@ const LoginForm = () => {
             Identificate o crea una nueva cuenta para acceder a tu caja fuerte.
           </p>
 
-          <form noValidate onSubmit={onSubmit} className="flex flex-col gap-4">
+          <form
+            noValidate
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-4"
+          >
             <div>
               <label className="input input-bordered flex items-center gap-2">
                 <MdEmail className="bg-opacity-50" />
@@ -36,6 +44,9 @@ const LoginForm = () => {
                       message: "Correo no válido.",
                     },
                   })}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
                   className="grow"
                   placeholder="Correo"
                 />

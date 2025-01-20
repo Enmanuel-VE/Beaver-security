@@ -39,13 +39,10 @@ const GPasswordsForm = () => {
     });
 
     setValue("PasswordGenerated", newPassword);
-
-    console.log({ newPassword });
   };
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(watch("PasswordGenerated"));
-    console.log("Texto copiado: " + watch("PasswordGenerated"));
   };
 
   return (
@@ -87,6 +84,15 @@ const GPasswordsForm = () => {
         </div>
 
         <div className="flex justify-between pt-5">
+          <label>Letras</label>
+          <input
+            type="checkbox"
+            className="checkbox checkbox-primary"
+            {...register("alphabetsIsActivated")}
+          />
+        </div>
+
+        <div className="flex justify-between pt-5">
           <label>Mayúsculas</label>
           <input
             type="checkbox"
@@ -101,15 +107,6 @@ const GPasswordsForm = () => {
             type="checkbox"
             className="checkbox checkbox-primary"
             {...register("numbersIsActivated")}
-          />
-        </div>
-
-        <div className="flex justify-between pt-5">
-          <label>Letras</label>
-          <input
-            type="checkbox"
-            className="checkbox checkbox-primary"
-            {...register("alphabetsIsActivated")}
           />
         </div>
 

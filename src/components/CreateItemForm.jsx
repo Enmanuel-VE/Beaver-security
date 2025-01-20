@@ -1,3 +1,4 @@
+import { generateOTP } from "otp-agent";
 import { LuSaveAll } from "react-icons/lu";
 import { IoMdClose } from "react-icons/io";
 import { FaLink } from "react-icons/fa";
@@ -14,7 +15,22 @@ const CreateItemForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
+    getValues,
+    setValue,
   } = useForm();
+
+  const generatePassword = () => {
+    const newPassword = generateOTP({
+      length: 16,
+      numbers: true,
+      upperCaseAlphabets: true,
+      specialChars: true,
+      alphabets: true,
+    });
+
+    setValue("password", newPassword);
+  };
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
@@ -108,7 +124,7 @@ const CreateItemForm = () => {
             <label className="input input-primary gap-2 flex items-center">
               <IoKeySharp className="opacity-50" />
               <input
-                type="password"
+                type="text"
                 {...register("password", {
                   minLength: {
                     value: 4,
@@ -124,7 +140,11 @@ const CreateItemForm = () => {
               />
             </label>
 
-            <button className="btn btn-active btn-primary">
+            <button
+              type="button"
+              className="btn btn-active btn-primary"
+              onClick={generatePassword}
+            >
               <ImSpinner11 />
             </button>
           </div>
