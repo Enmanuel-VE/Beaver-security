@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Safe from "./pages/Safe";
-import Register from "./pages/Register";
+import SignIn from "./pages/SignIn";
 import PasswordsGenerator from "./pages/PasswordsGenerator";
 import Config from "./pages/Config";
 import Layout from "./components/Layouts";
@@ -20,7 +20,7 @@ const App = () => {
           <Route path="/show-item" element={<ShowItem />} />
         </Route>
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/sign-in" element={<SignIn />} />
       </Routes>
     </BrowserRouter>
   );
