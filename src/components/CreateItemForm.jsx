@@ -79,6 +79,7 @@ const CreateItemForm = ({ isEdit, values }) => {
             <GiCardboardBoxClosed className="opacity-[50%] h-5 w-5" />
             <input
               type="text"
+              defaultValue={isEdit ? values.name : ""}
               {...register("name", {
                 required: {
                   value: true,
@@ -110,6 +111,7 @@ const CreateItemForm = ({ isEdit, values }) => {
             <FaUserAlt className="opacity-[50%]" />
             <input
               type="text"
+              defaultValue={isEdit ? values.user_name : ""}
               {...register("userName", {
                 minLength: {
                   value: 2,
@@ -137,6 +139,7 @@ const CreateItemForm = ({ isEdit, values }) => {
             <MdEmail className="opacity-50" />
             <input
               type="email"
+              defaultValue={isEdit ? values.email : ""}
               {...register("email", {
                 pattern: {
                   value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
@@ -156,6 +159,7 @@ const CreateItemForm = ({ isEdit, values }) => {
               <IoKeySharp className="opacity-50" />
               <input
                 type="text"
+                defaultValue={isEdit ? values.password : ""}
                 {...register("password", {
                   minLength: {
                     value: 4,
@@ -186,6 +190,7 @@ const CreateItemForm = ({ isEdit, values }) => {
           <label className="input input-primary gap-2 flex items-center ">
             <FaLink className="opacity-50" />
             <input
+              defaultValue={isEdit ? values.url : ""}
               {...register("url", {
                 pattern: {
                   value:
@@ -203,6 +208,7 @@ const CreateItemForm = ({ isEdit, values }) => {
           )}
         </div>
         <textarea
+          defaultValue={isEdit ? values.note : ""}
           {...register("hint", {
             maxLength: {
               value: 200,
@@ -232,11 +238,12 @@ const CreateItemForm = ({ isEdit, values }) => {
 
 CreateItemForm.propTypes = {
   isEdit: PropTypes.bool.isRequired,
-  values: PropTypes.string.isRequired,
+  values: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([null])]),
 };
 
 CreateItemForm.defaultProps = {
   isEdit: false,
+  values: null,
 };
 
 export default CreateItemForm;

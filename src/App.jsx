@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Safe from "./pages/Safe";
 import SignIn from "./pages/SignIn";
@@ -7,11 +7,13 @@ import Config from "./pages/Config";
 import Layout from "./components/Layouts";
 import CreateItem from "./pages/CreateItem";
 import ShowItem from "./pages/ShowItem";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Routes path="/" element={<Layout />}>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/" element={<Layout />}>
           <Route path="/safe" element={<Safe />} />
           <Route path="/config" element={<Config />} />
@@ -21,6 +23,7 @@ const App = () => {
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/sign-in" element={<SignIn />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
