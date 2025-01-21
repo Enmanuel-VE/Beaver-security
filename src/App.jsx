@@ -6,7 +6,7 @@ import PasswordsGenerator from "./pages/PasswordsGenerator";
 import Config from "./pages/Config";
 import Layout from "./components/Layouts";
 import CreateItem from "./pages/CreateItem";
-import ShowItem from "./pages/ShowItem";
+import ItemDetail from "./pages/ItemDetail";
 import NotFound from "./pages/NotFound";
 
 const App = () => {
@@ -16,10 +16,11 @@ const App = () => {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/" element={<Layout />}>
           <Route path="/safe" element={<Safe />} />
+          <Route path="/safe/:itemId" element={<ItemDetail />} />
+
+          <Route path="/safe/create-item" element={<CreateItem />} />
           <Route path="/config" element={<Config />} />
-          <Route path="/createitem" element={<CreateItem />} />
           <Route path="/passwords-generator" element={<PasswordsGenerator />} />
-          <Route path="/show-item" element={<ShowItem />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/sign-in" element={<SignIn />} />

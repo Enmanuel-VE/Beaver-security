@@ -37,12 +37,12 @@ const CreateItemForm = ({ isEdit, values }) => {
   };
 
   const onSubmit = handleSubmit(
-    async ({ email, password, userName, url, hint, name }) => {
+    async ({ email, password, userName, link, hint, name }) => {
       const safe = {
         email,
         password,
         user_name: userName,
-        link: url,
+        link,
         note: hint,
         name,
       };
@@ -190,8 +190,8 @@ const CreateItemForm = ({ isEdit, values }) => {
           <label className="input input-primary gap-2 flex items-center ">
             <FaLink className="opacity-50" />
             <input
-              defaultValue={isEdit ? values.url : ""}
-              {...register("url", {
+              defaultValue={isEdit ? values.link : ""}
+              {...register("link", {
                 pattern: {
                   value:
                     /^(https?:\/\/)?([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})(\/\S*)?$/,
@@ -203,8 +203,8 @@ const CreateItemForm = ({ isEdit, values }) => {
               placeholder="Enlace"
             />
           </label>
-          {errors.url && (
-            <span className="text-justify">{errors.url.message}</span>
+          {errors.link && (
+            <span className="text-justify">{errors.link.message}</span>
           )}
         </div>
         <textarea
@@ -238,12 +238,7 @@ const CreateItemForm = ({ isEdit, values }) => {
 
 CreateItemForm.propTypes = {
   isEdit: PropTypes.bool.isRequired,
-  values: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([null])]),
-};
-
-CreateItemForm.defaultProps = {
-  isEdit: false,
-  values: null,
+  values: PropTypes.object.isRequired,
 };
 
 export default CreateItemForm;
