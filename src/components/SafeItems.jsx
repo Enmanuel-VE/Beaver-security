@@ -15,7 +15,7 @@ const SafeItem = ({ siteName, url }) => {
         </div>
       </div>
       <div className="w-6 flex items-center">
-        <IoIosArrowForward className="w-6 h-6" />
+        <IoIosArrowForward className="w-6 h-6 hover:cursor-pointer" />
       </div>
     </div>
   );

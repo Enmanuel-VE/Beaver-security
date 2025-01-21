@@ -9,16 +9,20 @@ import { ImSpinner11 } from "react-icons/im";
 import { GiCardboardBoxClosed } from "react-icons/gi";
 import BackButton from "./BackButton";
 import { useForm } from "react-hook-form";
+import { client } from "../services/supabase/client";
+import { NavLink, useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const CreateItemForm = () => {
+const CreateItemForm = ({ isEdit, values }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
-    getValues,
     setValue,
+    reset,
   } = useForm();
+
+  const navigate = useNavigate();
 
   const generatePassword = () => {
     const newPassword = generateOTP({
@@ -32,9 +36,36 @@ const CreateItemForm = () => {
     setValue("password", newPassword);
   };
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
-  });
+  const onSubmit = handleSubmit(
+    async ({ email, password, userName, url, hint, name }) => {
+      const safe = {
+        email,
+        password,
+        user_name: userName,
+        link: url,
+        note: hint,
+        name,
+      };
+      if (isEdit) {
+        const { data, error } = await client
+          .from("Safe")
+          .update(safe)
+          .eq("id", "someValue")
+          .select();
+        console.log({ data, error });
+        return;
+      }
+      const { data, error } = await client
+        .from("Safe")
+        .insert([safe])
+        .select()
+        .then(() => {
+          navigate("/safe");
+          reset();
+        });
+      console.log({ data, error });
+    }
+  );
 
   return (
     <div>
@@ -172,6 +203,12 @@ const CreateItemForm = () => {
           )}
         </div>
         <textarea
+          {...register("hint", {
+            maxLength: {
+              value: 200,
+              message: "La pista debe tener menos de 200 carácteres",
+            },
+          })}
           className="textarea textarea-primary flex items-center w-full "
           placeholder="Nota"
         />
@@ -180,14 +217,26 @@ const CreateItemForm = () => {
           <button className="btn btn-primary w-full">
             <LuSaveAll className="w-5 h-5" />
           </button>
-          <button className="btn bg-gray-500 text-white hover:text-white hover:btn-error hover:border-0 w-full">
-            <IoMdClose className="w-5 h-5" />
-          </button>
+
+          <NavLink to="/safe" end>
+            <button className="btn bg-gray-500 text-white hover:text-white hover:btn-error hover:border-0 w-full">
+              <IoMdClose className="w-5 h-5" />
+            </button>
+          </NavLink>
         </div>
       </form>
       <BackButton />
     </div>
   );
+};
+
+CreateItemForm.propTypes = {
+  isEdit: PropTypes.bool.isRequired,
+  values: PropTypes.string.isRequired,
+};
+
+CreateItemForm.defaultProps = {
+  isEdit: false,
 };
 
 export default CreateItemForm;

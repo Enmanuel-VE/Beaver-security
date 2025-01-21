@@ -4,6 +4,7 @@ import { MdEmail } from "react-icons/md";
 import { IoKeySharp } from "react-icons/io5";
 import { NavLink } from "react-router";
 import { useForm } from "react-hook-form";
+import { client } from "../services/supabase/client";
 
 const RegisterForm = () => {
   const {
@@ -13,10 +14,23 @@ const RegisterForm = () => {
     watch,
   } = useForm();
 
-  console.log(errors);
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
-  });
+  const onSubmit = handleSubmit(
+    async ({ email, password, name, passwordHint }) => {
+      let { data, error } = await client.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            first_name: name,
+            note: passwordHint,
+          },
+        },
+      });
+
+      console.log({ data, error });
+    }
+  );
+
   return (
     <div className="flex flex-col gap-4 p-4 max-w-md mx-auto">
       <div className="flex flex-col gap-4 p-4">

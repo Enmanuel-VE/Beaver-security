@@ -70,7 +70,7 @@ const GPasswordsForm = () => {
       <div className="flex flex-col justify-center pt-5 px-5">
         <div className="flex justify-center">
           <label htmlFor="password-length" className="mr-2">
-            Longitud
+            <p className="text-gray-400 font-semibold">Longitud</p>
           </label>
           <input
             type="range"
@@ -84,7 +84,7 @@ const GPasswordsForm = () => {
         </div>
 
         <div className="flex justify-between pt-5">
-          <label>Letras</label>
+          <label className="text-gray-400 font-semibold">Letras</label>
           <input
             type="checkbox"
             className="checkbox checkbox-primary"
@@ -93,7 +93,7 @@ const GPasswordsForm = () => {
         </div>
 
         <div className="flex justify-between pt-5">
-          <label>Mayúsculas</label>
+          <label className="text-gray-400 font-semibold">Mayúsculas</label>
           <input
             type="checkbox"
             className="checkbox checkbox-primary"
@@ -102,7 +102,7 @@ const GPasswordsForm = () => {
         </div>
 
         <div className="flex justify-between pt-5">
-          <label>Números</label>
+          <label className="text-gray-400 font-semibold">Números</label>
           <input
             type="checkbox"
             className="checkbox checkbox-primary"
@@ -111,7 +111,7 @@ const GPasswordsForm = () => {
         </div>
 
         <div className="flex justify-between pt-5">
-          <label>Signos</label>
+          <label className="text-gray-400 font-semibold">Signos</label>
           <input
             type="checkbox"
             className="checkbox checkbox-primary"
