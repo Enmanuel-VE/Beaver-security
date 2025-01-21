@@ -1,7 +1,11 @@
 import WorkingProgress from "../components/WorkingProgress";
 
 const Config = () => {
-  return <WorkingProgress />;
+  return (
+    <>
+      <WorkingProgress />
+    </>
+  );
 };
 
 export default Config;

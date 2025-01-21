@@ -39,7 +39,7 @@ const Safe = () => {
 
   return (
     <div className="my-5 flex flex-col gap-2">
-      {items.length > 1 ? (
+      {items.length >= 1 ? (
         items.map((item) => (
           <SafeItem key={item.id} url={item.link} siteName={item.name} />
         ))
