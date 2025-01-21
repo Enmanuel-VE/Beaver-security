@@ -20,7 +20,7 @@ const BottomNavigationBar = () => {
     <div className="btm-nav fixed bottom-0">
       <NavLink className="link link-primary" to={NAVIGATION.SAFE} end>
         <button
-          data-isActive={isActive(NAVIGATION.SAFE)}
+          data-isactive={isActive(NAVIGATION.SAFE)}
           className="text-primary data-[isActive=true]:active"
         >
           <AiOutlineSafety />
@@ -32,7 +32,7 @@ const BottomNavigationBar = () => {
         end
       >
         <button
-          data-isActive={isActive(NAVIGATION.GENERATOR_PASSWORDS)}
+          data-isactive={isActive(NAVIGATION.GENERATOR_PASSWORDS)}
           className="text-primary data-[isActive=true]:active"
         >
           <RiAiGenerateText />
@@ -41,7 +41,7 @@ const BottomNavigationBar = () => {
 
       <NavLink className="link link-primary" to={NAVIGATION.CONFIG} end>
         <button
-          data-isActive={isActive(NAVIGATION.CONFIG)}
+          data-isactive={isActive(NAVIGATION.CONFIG)}
           className="text-primary data-[isActive=true]:active"
         >
           <GrConfigure />
