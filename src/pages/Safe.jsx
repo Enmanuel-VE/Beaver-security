@@ -37,8 +37,6 @@ const Safe = () => {
     );
   }
 
-  console.log(items.map((item) => item.id));
-
   return (
     <div className="my-5 flex flex-col gap-2">
       {items.length >= 1 ? (
