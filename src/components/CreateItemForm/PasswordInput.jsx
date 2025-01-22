@@ -8,16 +8,7 @@ const PasswordInput = ({ isEdit, values, register }) => {
       <input
         type="text"
         defaultValue={isEdit ? values.password : ""}
-        {...register("password", {
-          minLength: {
-            value: 4,
-            message: "La contraseña debe tener al menos 4 caracteres.",
-          },
-          pattern: {
-            value: /^\S*$/,
-            message: "La contraseña no deben tener espacios.",
-          },
-        })}
+        {...register("password", {})}
         className="grow"
         placeholder="Contraseña"
       />

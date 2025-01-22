@@ -10,6 +10,10 @@ const EmailInput = ({ isEdit, values, register, errors }) => {
           type="email"
           defaultValue={isEdit ? values.email : ""}
           {...register("email", {
+            maxLength: {
+              value: 256,
+              message: "El correo debe tener menos de 256 carácteres",
+            },
             pattern: {
               value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
               message: "Correo no válido.",

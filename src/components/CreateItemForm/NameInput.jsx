@@ -14,13 +14,9 @@ const NameInput = ({ isEdit, values, register, errors }) => {
               value: true,
               message: "Introduzca un nombre de elemento.",
             },
-            minLength: {
-              value: 2,
-              message: "El nombre debe tener al menos 2 carácteres.",
-            },
             maxLength: {
-              value: 20,
-              message: "El nombre debe tener menos de 50 carácteres",
+              value: 256,
+              message: "El nombre debe tener menos de 256 caracteres.",
             },
             pattern: {
               value: /^[a-zA-Z\s'-]+$/,

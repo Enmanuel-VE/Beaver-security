@@ -11,6 +11,7 @@ import SubmitButton from "./SubmitButton";
 import DeleteOrCancelButton from "./DeleteOrCancelButton";
 import PasswordInput from "./PasswordInput";
 import LinkInput from "./LinkInput";
+import NoteTextarea from "./NoteTextarea";
 
 const CreateItemForm = ({ isEdit, values }) => {
   const {
@@ -122,8 +123,6 @@ const CreateItemForm = ({ isEdit, values }) => {
             <FaArrowsRotate />
           </button>
         </div>
-
-        {errors.password && <span>{errors.password.message}</span>}
       </div>
       <div className="w-full">
         <LinkInput
@@ -137,17 +136,8 @@ const CreateItemForm = ({ isEdit, values }) => {
           <span className="text-justify">{errors.link.message}</span>
         )}
       </div>
-      <textarea
-        defaultValue={isEdit ? values.note : ""}
-        {...register("note", {
-          maxLength: {
-            value: 200,
-            message: "La pista debe tener menos de 200 carácteres",
-          },
-        })}
-        className="textarea textarea-primary flex items-center w-full "
-        placeholder="Nota"
-      />
+
+      <NoteTextarea isEdit={isEdit} values={values} register={register} />
 
       <div className="grid grid-cols-1 sm1:grid-cols-2 gap-2 w-full">
         <SubmitButton isEdit={isEdit} />

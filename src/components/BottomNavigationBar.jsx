@@ -26,6 +26,7 @@ const BottomNavigationBar = () => {
           <AiOutlineSafety />
         </button>
       </NavLink>
+
       <NavLink
         className="link link-primary"
         to={NAVIGATION.GENERATOR_PASSWORDS}

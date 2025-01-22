@@ -10,13 +10,9 @@ const UserNameInput = ({ isEdit, values, register, errors }) => {
           type="text"
           defaultValue={isEdit ? values.user_name : ""}
           {...register("userName", {
-            minLength: {
-              value: 2,
-              message: "El usuario debe tener al menos 2 carácteres.",
-            },
             maxLength: {
-              value: 20,
-              message: "El usuario debe tener menos de 50 carácteres",
+              value: 256,
+              message: "El usuario debe tener menos de 256 carácteres",
             },
             pattern: {
               value: /^[a-zA-Z\s'-]+$/,
