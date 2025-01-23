@@ -20,7 +20,6 @@ PasswordInput.propTypes = {
   isEdit: PropTypes.bool.isRequired,
   values: PropTypes.object.isRequired,
   register: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired,
 };
 
 export default PasswordInput;

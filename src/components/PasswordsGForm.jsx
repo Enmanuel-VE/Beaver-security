@@ -47,12 +47,11 @@ const GPasswordsForm = () => {
 
   return (
     <form noValidate onSubmit={handleSubmit(copyToClipboard)}>
-      <div className="flex justify-center space-x-1 pt-5 px-5">
+      <div className="flex justify-center space-x-1 pt-5">
         <input
           type="text"
           placeholder="Generar contraseña"
-          disabled
-          className="input input-primary w-full focus:outline-none"
+          className="input input-primary w-full focus:outline-none  cursor-default"
           {...register("PasswordGenerated")}
         />
         <button type="submit" className="btn btn-active btn-primary">
@@ -67,18 +66,16 @@ const GPasswordsForm = () => {
         </button>
       </div>
 
-      <div className="flex flex-col justify-center pt-5 px-5">
-        <div className="flex justify-center">
-          <label htmlFor="password-length" className="mr-2">
-            <p className="text-gray-400 font-semibold">Longitud</p>
+      <div className="flex flex-col justify-center pt-5">
+        <div className="flex justify-between items-center">
+          <label htmlFor="password-length" className="flex flex-col">
+            <p className="text-gray-400 font-semibold items-center">Longitud</p>
           </label>
           <input
-            type="range"
+            type="number"
             id="password-length"
             name="password-length"
-            min="5"
-            max="32"
-            className="range range-primary"
+            className="input input-primary focus:outline-none border-none bg-slate-200 text-end appearance-none custom-number-input max-w-[31%]"
             {...register("passwordLength")}
           />
         </div>

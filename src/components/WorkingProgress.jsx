@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import LogoutButton from "./LogoutButton";
 
 const WorkingProgress = () => {
   return (
@@ -7,11 +7,7 @@ const WorkingProgress = () => {
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Próximamente.</h1>
           <p className="text-lg">¡Estén atentos para ver algo sorprendente!</p>
-          <NavLink to="/login" end>
-            <button className="btn btn-primary mt-4 hover:btn-error hover:text-white">
-              Cerrar sesión
-            </button>
-          </NavLink>
+          <LogoutButton />
         </div>
       </div>
     </>

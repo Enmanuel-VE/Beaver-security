@@ -1,10 +1,10 @@
-import NameInput from "./NameInput";
+import { FaArrowsRotate } from "react-icons/fa6";
 import { generateOTP } from "otp-agent";
 import { useForm } from "react-hook-form";
 import { client } from "../../services/supabase/client";
 import { useNavigate } from "react-router-dom";
+import NameInput from "./NameInput";
 import PropTypes from "prop-types";
-import { FaArrowsRotate } from "react-icons/fa6";
 import UserNameInput from "./UserNameInput";
 import EmailInput from "./EmailInput";
 import SubmitButton from "./SubmitButton";
@@ -38,6 +38,15 @@ const CreateItemForm = ({ isEdit, values }) => {
 
   const onSubmit = handleSubmit(
     async ({ email, password, userName, link, note, name }) => {
+      const getIdUser = async () => {
+        const {
+          data: {
+            user: { id },
+          },
+        } = await client.auth.getUser();
+        return id;
+      };
+
       const safe = {
         email,
         password,
@@ -45,29 +54,30 @@ const CreateItemForm = ({ isEdit, values }) => {
         link,
         note,
         name,
+        user_id: await getIdUser(),
       };
 
       if (isEdit) {
         const { data, error } = await client
-          .from("Safe")
+          .from("safe")
           .update(safe)
           .eq("id", values.id)
-          .select()
-          .then(() => {
-            navigate("/safe");
-          });
+          .select();
         console.log({ data, error });
+        if (!error) {
+          navigate("/safe");
+        }
         return;
       } else {
         const { data, error } = await client
-          .from("Safe")
+          .from("safe")
           .insert([safe])
-          .select()
-          .then(() => {
-            navigate("/safe");
-            reset();
-          });
+          .select();
         console.log({ data, error });
+        if (!error) {
+          navigate("/safe");
+          reset();
+        }
         return;
       }
     }
@@ -76,7 +86,7 @@ const CreateItemForm = ({ isEdit, values }) => {
   const handleDelete = async () => {
     if (isEdit) {
       const { data, error } = await client
-        .from("Safe")
+        .from("safe")
         .delete()
         .eq("id", values.id);
       console.log({ data, error });

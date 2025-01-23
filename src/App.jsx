@@ -1,4 +1,11 @@
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Navigate,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import Login from "./pages/Login";
 import Safe from "./pages/Safe";
 import SignIn from "./pages/SignIn";
@@ -8,10 +15,13 @@ import Layout from "./components/Layouts";
 import CreateItem from "./pages/CreateItem";
 import ItemDetail from "./pages/ItemDetail";
 import NotFound from "./pages/NotFound";
+import { useEffect } from "react";
+import { client } from "./services/supabase/client";
 
 const App = () => {
   return (
     <BrowserRouter>
+      <AuthHandler />
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/" element={<Layout />}>
@@ -28,6 +38,23 @@ const App = () => {
       </Routes>
     </BrowserRouter>
   );
+};
+
+const AuthHandler = () => {
+  const navigate = useNavigate();
+  const currentPage = useParams();
+
+  useEffect(() => {
+    client.auth.onAuthStateChange((session) => {
+      if (!session) {
+        if (currentPage !== "login" && currentPage !== "sign-in") {
+          navigate("/login");
+        }
+      }
+    });
+  }, [navigate, currentPage]);
+
+  return null;
 };
 
 export default App;

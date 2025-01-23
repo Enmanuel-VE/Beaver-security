@@ -10,7 +10,7 @@ const Safe = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchItems = async () => {
-    let { data, error } = await client.from("Safe").select("*");
+    let { data, error } = await client.from("safe").select("*");
 
     if (error) {
       console.error(error);

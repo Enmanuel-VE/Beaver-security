@@ -2,11 +2,13 @@ import { FaBook } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { IoKeySharp } from "react-icons/io5";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { client } from "../services/supabase/client";
+import { useEffect } from "react";
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -30,6 +32,16 @@ const RegisterForm = () => {
       console.log({ data, error });
     }
   );
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const { data } = await client.auth.getUser();
+      if (data.user) {
+        navigate("/safe");
+      }
+    };
+    checkUser();
+  }, [navigate]);
 
   return (
     <div className="flex flex-col gap-4 p-4 max-w-md mx-auto">
