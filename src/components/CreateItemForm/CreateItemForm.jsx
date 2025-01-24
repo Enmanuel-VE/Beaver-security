@@ -58,22 +58,19 @@ const CreateItemForm = ({ isEdit, values }) => {
       };
 
       if (isEdit) {
-        const { data, error } = await client
+        const { error } = await client
           .from("safe")
           .update(safe)
           .eq("id", values.id)
           .select();
-        console.log({ data, error });
+
         if (!error) {
           navigate("/safe");
         }
         return;
       } else {
-        const { data, error } = await client
-          .from("safe")
-          .insert([safe])
-          .select();
-        console.log({ data, error });
+        const { error } = await client.from("safe").insert([safe]).select();
+
         if (!error) {
           navigate("/safe");
           reset();
@@ -85,11 +82,7 @@ const CreateItemForm = ({ isEdit, values }) => {
 
   const handleDelete = async () => {
     if (isEdit) {
-      const { data, error } = await client
-        .from("safe")
-        .delete()
-        .eq("id", values.id);
-      console.log({ data, error });
+      await client.from("safe").delete().eq("id", values.id);
     }
     navigate("/safe");
   };

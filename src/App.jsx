@@ -4,7 +4,7 @@ import {
   Routes,
   Navigate,
   useNavigate,
-  useParams,
+  useLocation,
 } from "react-router-dom";
 import Login from "./pages/Login";
 import Safe from "./pages/Safe";
@@ -16,7 +16,6 @@ import CreateItem from "./pages/CreateItem";
 import ItemDetail from "./pages/ItemDetail";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
-import { client } from "./services/supabase/client";
 
 const App = () => {
   return (
@@ -34,27 +33,35 @@ const App = () => {
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/sign-in" element={<SignIn />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/not-found" element={<NotFound />} />
+        <Route path="*" element={<Navigate to="/not-found" />} />
       </Routes>
     </BrowserRouter>
   );
 };
+const paths = ["/login", "/sign-in"];
 
 const AuthHandler = () => {
   const navigate = useNavigate();
-  const currentPage = useParams();
+
+  const { pathname: currentPage } = useLocation();
+
+  const session = JSON.parse(
+    localStorage.getItem("sb-qzljmzpolasxdqoeezef-auth-token")
+  );
 
   useEffect(() => {
-    client.auth.onAuthStateChange((session) => {
-      if (!session) {
-        if (currentPage !== "login" && currentPage !== "sign-in") {
-          navigate("/login");
-        }
+    if (currentPage !== "/not-found") {
+      if (!session && !paths.includes(currentPage)) {
+        navigate("/login");
+        return;
       }
-    });
-  }, [navigate, currentPage]);
-
-  return null;
+      if (session && paths.includes(currentPage)) {
+        navigate("/safe");
+        return;
+      }
+    }
+  }, [navigate, currentPage, session]);
 };
 
 export default App;

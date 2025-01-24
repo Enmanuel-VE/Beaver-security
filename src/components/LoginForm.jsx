@@ -16,7 +16,7 @@ const LoginForm = () => {
 
   const onSubmit = async ({ email, password }) => {
     try {
-      const { data, error } = await client.auth.signInWithPassword({
+      const { error } = await client.auth.signInWithPassword({
         email,
         password,
       });
@@ -24,7 +24,6 @@ const LoginForm = () => {
         throw error;
       }
       navigate("/safe");
-      console.log({ data });
     } catch (error) {
       console.error("Error during sign in:", error);
     }

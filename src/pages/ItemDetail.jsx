@@ -3,7 +3,6 @@ import CreateItemForm from "../components/CreateItemForm/CreateItemForm";
 import { useParams } from "react-router-dom";
 import { client } from "../services/supabase/client";
 import { useEffect, useState } from "react";
-import { FaGear } from "react-icons/fa6";
 import Header from "../components/Header";
 import LoadPage from "./LoadPage";
 
