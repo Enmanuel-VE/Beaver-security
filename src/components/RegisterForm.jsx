@@ -18,7 +18,7 @@ const RegisterForm = () => {
 
   const onSubmit = handleSubmit(
     async ({ email, password, name, passwordHint }) => {
-      let { data, error } = await client.auth.signUp({
+      await client.auth.signUp({
         email,
         password,
         options: {
@@ -28,8 +28,6 @@ const RegisterForm = () => {
           },
         },
       });
-
-      console.log({ data, error });
     }
   );
 
