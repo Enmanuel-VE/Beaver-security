@@ -1,20 +1,60 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Navigate,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import Login from "./pages/Login";
 import Safe from "./pages/Safe";
-import Register from "./pages/Register";
-import GeneratorPasswords from "./pages/GeneratorPasswords";
+import SignIn from "./pages/SignIn";
+import PasswordsGenerator from "./pages/PasswordsGenerator";
+import Config from "./pages/Config";
+import Layout from "./components/Layouts";
+import CreateItem from "./pages/CreateItem";
+import ItemDetail from "./pages/ItemDetail";
+import NotFound from "./pages/NotFound";
+import { useEffect } from "react";
+import { client } from "./services/supabase/client";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Routes path="/" element={<div>hello wordl</div>}>
-        <Route path="/safe" element={<Safe />} />
+      <AuthHandler />
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/" element={<Layout />}>
+          <Route path="/safe" element={<Safe />} />
+          <Route path="/safe/:itemId" element={<ItemDetail />} />
+
+          <Route path="/safe/create-item" element={<CreateItem />} />
+          <Route path="/config" element={<Config />} />
+          <Route path="/passwords-generator" element={<PasswordsGenerator />} />
+        </Route>
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/generatorPasswords" element={<GeneratorPasswords />} />
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
+};
+
+const AuthHandler = () => {
+  const navigate = useNavigate();
+  const currentPage = useParams();
+
+  useEffect(() => {
+    client.auth.onAuthStateChange((session) => {
+      if (!session) {
+        if (currentPage !== "login" && currentPage !== "sign-in") {
+          navigate("/login");
+        }
+      }
+    });
+  }, [navigate, currentPage]);
+
+  return null;
 };
 
 export default App;
