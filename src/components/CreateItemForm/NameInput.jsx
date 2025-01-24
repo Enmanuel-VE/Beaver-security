@@ -18,14 +18,9 @@ const NameInput = ({ isEdit, values, register, errors }) => {
               value: 256,
               message: "El nombre debe tener menos de 256 caracteres.",
             },
-            pattern: {
-              value: /^[a-zA-Z\s'-]+$/,
-              message:
-                "El nombre solo puede contener letras, espacios, apóstrofes y guiones",
-            },
           })}
           className="grow"
-          placeholder="Nombre"
+          placeholder="Nombre de elemento"
         />
       </label>
       {errors.name && <span>{errors.name.message}</span>}

@@ -3,7 +3,6 @@ import { useNavigate } from "react-router";
 
 const LogoutButton = () => {
   const navigate = useNavigate();
-
   const handleLogout = async () => {
     try {
       await client.auth.signOut();
