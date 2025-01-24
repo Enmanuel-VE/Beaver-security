@@ -6,17 +6,17 @@ import { useForm } from "react-hook-form";
 const GPasswordsForm = () => {
   const { register, handleSubmit, watch, getValues, setValue } = useForm({
     defaultValues: {
-      shiftIsActivated: false,
-      numbersIsActivated: false,
-      symbolIsActivated: false,
-      passwordLength: 8,
+      shiftIsActivated: true,
+      numbersIsActivated: true,
+      symbolIsActivated: true,
+      passwordLength: 16,
       alphabetsIsActivated: true,
       PasswordGenerated: generateOTP({
-        length: 8,
-        numbers: false,
+        length: 16,
+        numbers: true,
         alphabets: true,
-        upperCaseAlphabets: false,
-        specialChars: false,
+        upperCaseAlphabets: true,
+        specialChars: true,
       }),
     },
   });

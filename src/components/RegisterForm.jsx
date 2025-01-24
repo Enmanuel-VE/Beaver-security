@@ -47,13 +47,14 @@ const RegisterForm = () => {
     <div className="flex flex-col gap-4 p-4 max-w-md mx-auto">
       <div className="flex flex-col gap-4 p-4">
         <h1 className="text-center text-2xl font-bold">Beaver Security</h1>
-
-        <p className="text-justify">
-          El 85% de las personas en todo el mundo reutilizan las mismas
-          contraseñas en varias cuentas. Esta práctica deja a las personas
-          increíblemente vulnerables a los intentos de pirateo. Haz la
-          prevención.
-        </p>
+        {document.querySelector("form")?.style.display !== "none" && (
+          <p className="text-justify">
+            El 85% de las personas en todo el mundo reutilizan las mismas
+            contraseñas en varias cuentas. Esta práctica deja a las personas
+            increíblemente vulnerables a los intentos de pirateo. Haz la
+            prevención.
+          </p>
+        )}
 
         <form noValidate onSubmit={onSubmit} className="flex flex-col gap-4">
           <div>
@@ -186,19 +187,31 @@ const RegisterForm = () => {
           <button
             type="submit"
             className="btn btn-active text-center btn-primary"
+            onClick={() =>
+              (document.querySelector("form").style.display = "none")
+            }
           >
             Registrarce
           </button>
         </form>
-        <p>
-          ¿Ya tienes cuenta?{" "}
-          <span>
-            <NavLink className="link link-primary" to="/login" end>
-              Acceder
-            </NavLink>
-          </span>
-          .
-        </p>
+
+        {}
+        {document.querySelector("form")?.style.display === "none" && (
+          <p className="text-center">
+            Registro exitoso. Revise su correo a la espera de la verificación...
+          </p>
+        )}
+        {document.querySelector("form")?.style.display !== "none" && (
+          <p>
+            ¿Ya tienes cuenta?{" "}
+            <span>
+              <NavLink className="link link-primary" to="/login" end>
+                Acceder
+              </NavLink>
+            </span>
+            .
+          </p>
+        )}
       </div>
     </div>
   );
