@@ -6,6 +6,7 @@ import { NavLink, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { client } from "../services/supabase/client";
 import { useEffect } from "react";
+import CounterForRedirection from "./CounterForRedirection";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -193,12 +194,16 @@ const RegisterForm = () => {
           </button>
         </form>
 
-        {}
         {document.querySelector("form")?.style.display === "none" && (
-          <p className="text-center">
-            Registro exitoso. Revise su correo a la espera de la verificación...
-          </p>
+          <div>
+            <p className="text-center">
+              Registro exitoso. Revise su correo a la espera de la
+              verificación...
+            </p>
+            <CounterForRedirection />
+          </div>
         )}
+
         {document.querySelector("form")?.style.display !== "none" && (
           <p>
             ¿Ya tienes cuenta?{" "}
