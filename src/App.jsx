@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   BrowserRouter,
   Route,
@@ -15,28 +16,35 @@ import Layout from "./components/Layouts";
 import CreateItem from "./pages/CreateItem";
 import ItemDetail from "./pages/ItemDetail";
 import NotFound from "./pages/NotFound";
-import { useEffect } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <AuthHandler />
-      <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/" element={<Layout />}>
-          <Route path="/safe" element={<Safe />} />
-          <Route path="/safe/:itemId" element={<ItemDetail />} />
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <AuthHandler />
+        <Routes>
+          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/" element={<Layout />}>
+            <Route path="/safe" element={<Safe />} />
+            <Route path="/safe/:itemId" element={<ItemDetail />} />
 
-          <Route path="/safe/create-item" element={<CreateItem />} />
-          <Route path="/config" element={<Config />} />
-          <Route path="/passwords-generator" element={<PasswordsGenerator />} />
-        </Route>
-        <Route path="/login" element={<Login />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/not-found" element={<NotFound />} />
-        <Route path="*" element={<Navigate to="/not-found" />} />
-      </Routes>
-    </BrowserRouter>
+            <Route path="/safe/create-item" element={<CreateItem />} />
+            <Route path="/config" element={<Config />} />
+            <Route
+              path="/passwords-generator"
+              element={<PasswordsGenerator />}
+            />
+          </Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/not-found" element={<NotFound />} />
+          <Route path="*" element={<Navigate to="/not-found" />} />
+        </Routes>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 };
 const paths = ["/login", "/sign-in"];

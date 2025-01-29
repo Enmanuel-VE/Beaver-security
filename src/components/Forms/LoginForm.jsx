@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router";
 import { MdEmail } from "react-icons/md";
 import { IoKeySharp } from "react-icons/io5";
-import { client } from "../services/supabase/client";
+import { client } from "../../services/supabase/client";
 import { useEffect } from "react";
 
 const LoginForm = () => {

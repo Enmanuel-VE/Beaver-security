@@ -1,4 +1,4 @@
-import { client } from "../services/supabase/client";
+import { client } from "../../services/supabase/client";
 import { useNavigate } from "react-router";
 
 const LogoutButton = () => {

@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import PasswordsGForm from "../components/PasswordsGForm";
+import PasswordsGForm from "../components/Forms/PasswordsGForm";
 
 const PasswordsGenerator = () => {
   return (

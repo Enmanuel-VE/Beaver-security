@@ -1,37 +1,19 @@
-import { useEffect, useState } from "react";
-import CreateButtonItem from "../components/CreateButtonItem";
-
-import SafeItem from "../components/SafeItems";
-import { client } from "../services/supabase/client";
+import CreateButtonItem from "../components/Buttons/CreateButtonItem";
+import SafeItem from "../components/Cards/SafeItems";
+import { useGetSafes } from "../queries/safes";
 import LoadPage from "./LoadPage";
 
 const Safe = () => {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { data: items, isLoading } = useGetSafes();
 
-  const fetchItems = async () => {
-    let { data, error } = await client.from("safe").select("*");
-
-    if (error) {
-      console.error(error);
-    }
-
-    setItems(data);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    fetchItems();
-  }, []);
-
-  if (loading) {
+  if (isLoading) {
     return <LoadPage />;
   }
 
   return (
     <div className="my-5 flex flex-col gap-2">
-      {items.length >= 1 ? (
-        items.map((item) => (
+      {items?.data?.length >= 1 ? (
+        items?.data?.map((item) => (
           <SafeItem
             key={item.id}
             itemId={item.id}

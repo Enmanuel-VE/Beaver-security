@@ -4,9 +4,9 @@ import { MdEmail } from "react-icons/md";
 import { IoKeySharp } from "react-icons/io5";
 import { NavLink, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
-import { client } from "../services/supabase/client";
+import { client } from "../../services/supabase/client";
 import { useEffect } from "react";
-import CounterForRedirection from "./CounterForRedirection";
+import CounterForRedirection from "../CounterForRedirection";
 
 const RegisterForm = () => {
   const navigate = useNavigate();

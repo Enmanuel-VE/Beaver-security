@@ -1,5 +1,5 @@
-import CreateItemForm from "../components/CreateItemForm/CreateItemForm";
-import BackButton from "../components/BackButton";
+import CreateItemForm from "../components/Forms/CreateItemForm";
+import BackButton from "../components/Buttons/BackButton";
 import Header from "../components/Header";
 
 const CreateItem = () => {

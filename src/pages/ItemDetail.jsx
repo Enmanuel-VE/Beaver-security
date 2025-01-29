@@ -1,5 +1,5 @@
-import BackButton from "../components/BackButton";
-import CreateItemForm from "../components/CreateItemForm/CreateItemForm";
+import BackButton from "../components/Buttons/BackButton";
+import CreateItemForm from "../components/Forms/CreateItemForm";
 import { useParams } from "react-router-dom";
 import { client } from "../services/supabase/client";
 import { useEffect, useState } from "react";

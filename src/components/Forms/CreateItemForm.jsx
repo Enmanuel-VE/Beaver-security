@@ -3,15 +3,16 @@ import { generateOTP } from "otp-agent";
 import { useForm } from "react-hook-form";
 import { client } from "../../services/supabase/client";
 import { useNavigate } from "react-router-dom";
-import NameInput from "./NameInput";
+import NameInput from "../CreateItemForm/NameInput";
 import PropTypes from "prop-types";
-import UserNameInput from "./UserNameInput";
-import EmailInput from "./EmailInput";
-import SubmitButton from "./SubmitButton";
-import DeleteOrCancelButton from "./DeleteOrCancelButton";
-import PasswordInput from "./PasswordInput";
-import LinkInput from "./LinkInput";
-import NoteTextarea from "./NoteTextarea";
+import UserNameInput from "../CreateItemForm/UserNameInput";
+import EmailInput from "../CreateItemForm/EmailInput";
+import SubmitButton from "../CreateItemForm/SubmitButton";
+import DeleteOrCancelButton from "../CreateItemForm/DeleteOrCancelButton";
+import PasswordInput from "../CreateItemForm/PasswordInput";
+import LinkInput from "../CreateItemForm/LinkInput";
+import NoteTextarea from "../CreateItemForm/NoteTextarea";
+import { useCreateSafe, useDeleteSafe, useEditSafe } from "../../queries/safes";
 
 const CreateItemForm = ({ isEdit, values }) => {
   const {
@@ -21,6 +22,12 @@ const CreateItemForm = ({ isEdit, values }) => {
     setValue,
     reset,
   } = useForm();
+
+  const { mutate: createItem, isPending: isLoadingCreate } = useCreateSafe();
+
+  const { mutate: editSafe, isPending: isLoadingEdit } = useEditSafe();
+
+  const { mutate: deleteSafe, isPending: isLoadingDelete } = useDeleteSafe();
 
   const navigate = useNavigate();
 
@@ -58,34 +65,37 @@ const CreateItemForm = ({ isEdit, values }) => {
       };
 
       if (isEdit) {
-        const { error } = await client
-          .from("safe")
-          .update(safe)
-          .eq("id", values.id)
-          .select();
-
-        if (!error) {
-          navigate("/safe");
-        }
-        return;
+        editSafe(
+          { ...safe, id: values.id },
+          {
+            onSuccess: () => {
+              navigate("/safe");
+            },
+          }
+        );
       } else {
-        const { error } = await client.from("safe").insert([safe]).select();
-
-        if (!error) {
-          navigate("/safe");
-          reset();
-        }
-        return;
+        createItem(safe, {
+          onSuccess: () => {
+            reset();
+            navigate("/safe");
+          },
+        });
       }
     }
   );
 
   const handleDelete = async () => {
     if (isEdit) {
-      await client.from("safe").delete().eq("id", values.id);
+      deleteSafe(values.id, {
+        onSuccess: () => {
+          navigate("/safe");
+        },
+      });
     }
     navigate("/safe");
   };
+
+  const isLoading = isLoadingEdit || isLoadingCreate || isLoadingDelete;
 
   return (
     <form
@@ -143,8 +153,12 @@ const CreateItemForm = ({ isEdit, values }) => {
       <NoteTextarea isEdit={isEdit} values={values} register={register} />
 
       <div className="grid grid-cols-1 sm1:grid-cols-2 gap-2 w-full">
-        <SubmitButton isEdit={isEdit} />
-        <DeleteOrCancelButton handleDelete={handleDelete} isEdit={isEdit} />
+        <SubmitButton isEdit={isEdit} isDisabled={isLoading} />
+        <DeleteOrCancelButton
+          handleDelete={handleDelete}
+          isEdit={isEdit}
+          isDisabled={isLoading}
+        />
       </div>
     </form>
   );
