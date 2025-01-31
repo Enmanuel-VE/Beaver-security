@@ -190,7 +190,7 @@ const RegisterForm = () => {
               (document.querySelector("form").style.display = "none")
             }
           >
-            Registrarce
+            Registrarse
           </button>
         </form>
 
